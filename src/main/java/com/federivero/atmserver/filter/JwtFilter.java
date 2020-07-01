@@ -1,7 +1,7 @@
-package com.javatechie.jwt.api.filter;
+package com.federivero.atmserver.filter;
 
-import com.javatechie.jwt.api.service.CustomUserDetailsService;
-import com.javatechie.jwt.api.util.JwtUtil;
+import com.federivero.atmserver.service.CustomUserDetailsService;
+import com.federivero.atmserver.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

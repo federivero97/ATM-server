@@ -1,10 +1,11 @@
-package com.javatechie.jwt.api.controller;
+package com.federivero.atmserver.controller;
 
-import com.javatechie.jwt.api.entity.AuthRequest;
-import com.javatechie.jwt.api.util.JwtUtil;
+import com.federivero.atmserver.entity.UserEntity;
+import com.federivero.atmserver.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,18 +21,18 @@ public class WelcomeController {
 
     @GetMapping("/")
     public String welcome() {
-        return "Welcome to javatechie !!";
+        return "Welcome to AMT Searcher !!";
     }
 
-    @PostMapping("/authenticate")
-    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
+    @PostMapping("/login")
+    public String generateToken(@RequestBody UserEntity userRequest) throws Exception {
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authRequest.getUserName(), authRequest.getPassword())
+                    new UsernamePasswordAuthenticationToken(userRequest.getUserName(), userRequest.getPassword())
             );
         } catch (Exception ex) {
-            throw new Exception("inavalid username/password");
+            throw new Exception("invalid username/password");
         }
-        return jwtUtil.generateToken(authRequest.getUserName());
+        return jwtUtil.generateToken(userRequest.getUserName());
     }
 }

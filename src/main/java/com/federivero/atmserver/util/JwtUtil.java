@@ -1,4 +1,4 @@
-package com.javatechie.jwt.api.util;
+package com.federivero.atmserver.util;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -14,7 +14,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtil {
 
-    private String secret = "javatechie";
+    private String secret = "ADVANCED TECHNOLOGY SOLUTIONS";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

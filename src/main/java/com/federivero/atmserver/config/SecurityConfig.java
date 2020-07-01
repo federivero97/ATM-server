@@ -1,7 +1,7 @@
-package com.javatechie.jwt.api.config;
+package com.federivero.atmserver.config;
 
-import com.javatechie.jwt.api.filter.JwtFilter;
-import com.javatechie.jwt.api.service.CustomUserDetailsService;
+import com.federivero.atmserver.filter.JwtFilter;
+import com.federivero.atmserver.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable().authorizeRequests().antMatchers("/authenticate")
+        http.csrf().disable().authorizeRequests().antMatchers("/login")
                 .permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
