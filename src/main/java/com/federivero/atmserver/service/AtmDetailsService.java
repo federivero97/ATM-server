@@ -18,9 +18,15 @@ import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
 @Service
-public class JsonReaderService {
+public class AtmDetailsService {
 
-    public List<Atm> getAtms() throws IOException, JSONException {
+    private AtmDetailsService() throws IOException, JSONException{
+        this.AtmList = getAtmFromJSON();
+    }
+
+    private List<Atm> AtmList;
+
+    private List<Atm> getAtmFromJSON() throws IOException, JSONException {
         String url = "https://www.dropbox.com/s/6fg0k2wxwrheyqk/ATMs?dl=1";
         Gson gson = new Gson();
         BufferedReader br = null;
@@ -29,12 +35,16 @@ public class JsonReaderService {
         try {
             BufferedReader rd = new BufferedReader(new InputStreamReader(is, Charset.forName("UTF-8")));
             Type listAtmType = new TypeToken<List<Atm>>() {}.getType();
-            List<Atm> atms = gson.fromJson(rd, listAtmType);
+            List<Atm> atmList = gson.fromJson(rd, listAtmType);
 
-            return atms;
+            return atmList;
 
         } finally {
             is.close();
         }
     }
+    public List<Atm> getAtmList(){
+        return this.AtmList;
+    }
+
 }
