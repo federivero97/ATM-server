@@ -30,6 +30,10 @@ public class JwtFilter extends OncePerRequestFilter {
 
         String authorizationHeader = httpServletRequest.getHeader("Authorization");
 
+        if ("OPTIONS".equalsIgnoreCase(httpServletRequest.getMethod())) {
+            httpServletResponse.setStatus(HttpServletResponse.SC_OK);
+        }
+
         String token = null;
         String userName = null;
 

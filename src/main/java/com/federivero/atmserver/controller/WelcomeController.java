@@ -19,12 +19,12 @@ public class WelcomeController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/")
+    @GetMapping("/atscom/")
     public String welcome() {
         return "Welcome to AMT Searcher !!";
     }
 
-    @PostMapping("/login")
+    @PostMapping("/atscom/login")
     public String generateToken(@RequestBody UserEntity userRequest) throws Exception {
         try {
             authenticationManager.authenticate(
