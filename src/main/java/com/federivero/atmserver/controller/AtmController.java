@@ -25,8 +25,8 @@ public class AtmController {
 
         List<Atm> atmList = new ArrayList<>();
 
-        if (text==null || fields.isEmpty()){
-            atmList = atmDetailsService.getAtmList();
+        if (fields.isEmpty()){
+            atmList = null;
         } else {
             atmList = atmDetailsService.filterAtmList(text, fields);
         }

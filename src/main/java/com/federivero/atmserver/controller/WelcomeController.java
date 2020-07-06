@@ -5,7 +5,6 @@ import com.federivero.atmserver.util.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,11 +18,6 @@ public class WelcomeController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/atscom/")
-    public String welcome() {
-        return "Welcome to AMT Searcher !!";
-    }
-
     @PostMapping("/atscom/login")
     public String generateToken(@RequestBody UserEntity userRequest) throws Exception {
         try {
@@ -31,7 +25,7 @@ public class WelcomeController {
                     new UsernamePasswordAuthenticationToken(userRequest.getUserName(), userRequest.getPassword())
             );
         } catch (Exception ex) {
-            throw new Exception("invalid username/password");
+            throw new Exception("Invalid username/password");
         }
         return jwtUtil.generateToken(userRequest.getUserName());
     }
