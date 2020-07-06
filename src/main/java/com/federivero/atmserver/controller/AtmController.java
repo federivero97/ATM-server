@@ -20,13 +20,13 @@ public class AtmController {
     @Autowired
     private AtmDetailsService atmDetailsService;
 
-    @GetMapping("/atm")
+    @GetMapping("/atscom/atm")
     public List<Atm> atm(@RequestParam(value = "q", required = false, defaultValue = "") String text, @RequestParam(value = "fields", required = false, defaultValue = "") List<String> fields) throws IOException, JSONException {
 
         List<Atm> atmList = new ArrayList<>();
 
-        if (text==null || fields.isEmpty()){
-            atmList = atmDetailsService.getAtmList();
+        if (fields.isEmpty()){
+            atmList = null;
         } else {
             atmList = atmDetailsService.filterAtmList(text, fields);
         }
